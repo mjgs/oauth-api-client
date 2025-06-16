@@ -67,9 +67,25 @@ app.get('/', (req, res) => {
       <head>
           <title>Books App</title>
           <style>
-              body { font-family: Arial, sans-serif; max-width: 600px; margin: 100px auto; text-align: center; }
-              .btn { display: inline-block; padding: 12px 24px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-              .btn:hover { background: #0056b3; }
+              body {
+font-family: Arial, sans-serif;
+max-width: 600px;
+margin: 100px auto;
+text-align: center;
+          }
+
+              .btn {
+display: inline-block;
+padding: 12px 24px;
+background: #007bff;
+color: white;
+text-decoration: none;
+border-radius: 5px;
+          }
+
+              .btn:hover {
+background: #0056b3;
+}
           </style>
       </head>
       <body>
@@ -165,36 +181,45 @@ app.get('/dashboard', requireAuth, async (req, res) => {
                   padding: 20px; 
                   background: #f8f9fa; 
               }
-              .container { max-width: 1200px; margin: 0 auto; }
+
+              .container {
+max-width: 1200px;
+margin: 0 auto;
+          }
+
               .header { 
                   background: white; 
                   padding: 20px; 
                   border-radius: 8px; 
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
                   margin-bottom: 20px;
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
               }
+
               .profile-info {
                   background: #e8f5e8;
                   padding: 15px;
                   border-radius: 6px;
                   margin-bottom: 20px;
               }
+
               .books-section {
                   background: white;
                   padding: 20px;
                   border-radius: 8px;
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                   margin-bottom: 20px;
               }
+
               .books-grid {
                   display: grid;
                   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                   gap: 20px;
                   margin-top: 20px;
               }
+
               .book-card {
                   background: #f8f9fa;
                   padding: 15px;
@@ -202,40 +227,65 @@ app.get('/dashboard', requireAuth, async (req, res) => {
                   border: 1px solid #e9ecef;
                   transition: transform 0.2s;
               }
-              .book-card:hover { transform: translateY(-2px); }
-              .book-title { font-weight: bold; color: #333; margin-bottom: 5px; }
-              .book-author { color: #666; font-size: 14px; margin-bottom: 10px; }
-              .book-meta { font-size: 12px; color: #999; }
+
+              .book-card:hover {
+transform: translateY(-2px);
+          }
+
+              .book-title {
+font-weight: bold;
+color: #333;
+margin-bottom: 5px;
+          }
+
+              .book-author {
+color: #666;
+font-size: 14px;
+margin-bottom: 10px;
+          }
+
+              .book-meta {
+font-size: 12px;
+color: #999;
+          }
+
               .add-book-form {
                   background: #fff3cd;
                   padding: 20px;
                   border-radius: 6px;
                   margin-bottom: 20px;
               }
+
               .form-group {
                   margin-bottom: 15px;
               }
+
               .form-group label {
                   display: block;
                   margin-bottom: 5px;
                   font-weight: 500;
               }
-              .form-group input, .form-group textarea {
+
+              .form-group input,
+.form-group textarea {
                   width: 100%;
                   padding: 8px 12px;
                   border: 1px solid #ddd;
                   border-radius: 4px;
                   font-size: 14px;
               }
+
               .form-group textarea {
                   height: 80px;
                   resize: vertical;
               }
+
               .form-row {
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   gap: 15px;
               }
+
               .btn {
                   display: inline-block;
                   padding: 10px 20px;
@@ -247,16 +297,49 @@ app.get('/dashboard', requireAuth, async (req, res) => {
                   cursor: pointer;
                   font-size: 14px;
               }
-              .btn:hover { background: #0056b3; }
-              .btn-danger { background: #dc3545; }
-              .btn-danger:hover { background: #c82333; }
-              .btn-success { background: #28a745; }
-              .btn-success:hover { background: #218838; }
-              .nav-links { display: flex; gap: 10px; }
-              .no-books { text-align: center; color: #666; font-style: italic; padding: 40px; }
+
+              .btn:hover {
+background: #0056b3;
+          }
+
+              .btn-danger {
+background: #dc3545;
+          }
+
+              .btn-danger:hover {
+background: #c82333;
+          }
+
+              .btn-success {
+background: #28a745;
+          }
+
+              .btn-success:hover {
+background: #218838;
+          }
+
+              .nav-links {
+display: flex;
+gap: 10px;
+          }
+
+              .no-books {
+text-align: center;
+color: #666;
+font-style: italic;
+padding: 40px;
+          }
+
               @media (max-width: 768px) {
-                  .form-row { grid-template-columns: 1fr; }
-                  .header { flex-direction: column; gap: 15px; text-align: center; }
+                  .form-row {
+grid-template-columns: 1fr;
+            }
+
+                  .header {
+flex-direction: column;
+gap: 15px;
+text-align: center;
+}
               }
           </style>
       </head>
@@ -317,7 +400,8 @@ app.get('/dashboard', requireAuth, async (req, res) => {
                                   <div class="book-author">by ${book.author || 'Unknown Author'}</div>
                                   ${book.isbn ? `<div class="book-meta">ISBN: ${book.isbn}</div>` : ''}
                                   ${book.publishedYear ? `<div class="book-meta">Published: ${book.publishedYear}</div>` : ''}
-                                  ${book.description ? `<div class="book-meta" style="margin-top: 10px; color: #555;">${book.description}</div>` : ''}
+                                  ${book.description ? `<div class="book-meta" style="margin-top: 10px; color: #555;">${book.description}</div>`
+: ''}
                                   <div class="book-meta" style="margin-top: 10px;">
                                       ID: ${book.id || book._id || 'N/A'}
                                   </div>
